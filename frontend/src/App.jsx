@@ -1,9 +1,17 @@
 import { useState } from 'react'
-import './App.css'
+import Navbar from './components/Navbar'
+import {Route, Routes} from 'react-router-dom'
+import LandingPage from './pages/LandingPage'
 
 function App() {
   return (
-    <div> App </div>
+    <>
+      <Navbar/>
+      <Routes>
+        <Route path='/' element={<LandingPage/>}/>
+      </Routes>
+    </>
+
   )
 }
 
