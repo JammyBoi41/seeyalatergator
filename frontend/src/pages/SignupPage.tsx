@@ -1,7 +1,14 @@
-import React from 'react'
+import React, {useState} from 'react'
 import Form from 'react-bootstrap/Form'
+import createUser from '../lib/createUser'
 
 const SignupPage = () => {
+  const [signupData, setSignupData] = useState({
+    name: '',
+    email: '',
+    password: '',
+  });
+
   return (
     <div style={{backgroundColor: "#f2f4fa"}} className="w-full h-screen flex flex-col items-center justify-center">  {/* landing page div */}
       
@@ -14,14 +21,14 @@ const SignupPage = () => {
           <Form.Label className="text-sm">
             Name
           </Form.Label>
-          <Form.Control placeholder="John Doe" className="outline-gray-400 border-gray-300 border-1 rounded h-9 font-thin pl-3 text-sm"/>
+          <Form.Control onChange={e => setSignupData({...signupData, name: e.target.value})} placeholder="John Doe" className="outline-gray-400 border-gray-300 border-1 rounded h-9 font-thin pl-3 text-sm"/>
         </Form.Group>
 
         <Form.Group className="flex flex-col mb-5">
           <Form.Label className="text-sm">
             Email Address
           </Form.Label>
-          <Form.Control placeholder="name@example.com" className="outline-gray-400 border-gray-300 border-1 rounded h-9 font-thin pl-3 text-sm"/>
+          <Form.Control onChange={e => setSignupData({...signupData, email: e.target.value})} placeholder="name@example.com" className="outline-gray-400 border-gray-300 border-1 rounded h-9 font-thin pl-3 text-sm"/>
         </Form.Group>
 
 
@@ -29,11 +36,11 @@ const SignupPage = () => {
           <Form.Label className="text-sm">
             Password
           </Form.Label>
-          <Form.Control type="password" className="outline-gray-400 border-gray-300 border-1 rounded h-9 font-thin pl-3 text-sm"/>
+          <Form.Control onChange={e => setSignupData({...signupData, password: e.target.value})} type="password" className="outline-gray-400 border-gray-300 border-1 rounded h-9 font-thin pl-3 text-sm"/>
         </Form.Group>
 
-        <button className="bg-gray-950 w-full text-white pt-2 pb-2 rounded-xl hover:bg-gray-700 transition duration-300 cursor-pointer">
-          Log In
+        <button onClick={(e) => {e.preventDefault(); createUser(signupData)}} className="bg-gray-950 w-full text-white pt-2 pb-2 rounded-xl hover:bg-gray-700 transition duration-300 cursor-pointer">
+          Register
         </button>
     </Form>
     </div>
