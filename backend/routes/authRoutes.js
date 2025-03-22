@@ -1,9 +1,11 @@
+//this file is for setting up the routes that are going to be called from the frontend
+
 const express = require('express');
 const router = express.Router();
 const cors = require('cors'); //allows you to connect to different hosts
-const { test } = require('../controllers/authController')
+const { test, registerUser } = require('../controllers/authController')
 
-//middleware
+//middleware, origin set to http://localhost:5173/...
 router.use(
     cors({
         credentials: true,
@@ -12,5 +14,6 @@ router.use(
 );
 
 router.get('/', test);
+router.post('/register', registerUser);
 
 module.exports = router;
