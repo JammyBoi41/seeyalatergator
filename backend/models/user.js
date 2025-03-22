@@ -14,6 +14,6 @@ const userSchema = new Schema({
 
 
 //put into 'User' collection
-const UserModel = mongoose.model('User', userSchema); //represents the mongodb user db
+const UserModel = mongoose.model('users', userSchema); //represents the mongodb user db
 
 module.exports = UserModel;
