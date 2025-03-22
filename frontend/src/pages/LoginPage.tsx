@@ -20,9 +20,9 @@ const LoginPage = () => {
 
         <Form.Group className="flex flex-col mb-5">
           <Form.Label className="text-sm">
-            Email Address
+            Password
           </Form.Label>
-          <Form.Control placeholder="name@example.com" type="password" className="outline-gray-400 border-gray-300 border-1 rounded h-9 font-thin pl-3 text-sm"/>
+          <Form.Control type="password" className="outline-gray-400 border-gray-300 border-1 rounded h-9 font-thin pl-3 text-sm"/>
         </Form.Group>
 
         <button className="bg-gray-950 w-full text-white pt-2 pb-2 rounded-xl hover:bg-gray-700 transition duration-300 cursor-pointer">
