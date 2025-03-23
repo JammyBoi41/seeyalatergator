@@ -27,7 +27,24 @@ const registerUser = async(req, res) => { //this has to be an async function bec
     }
 }
 
+const loginUser = async(req, res) => {
+    try {
+        const {email, password} = req.body;
+        const existingUser = await(User.findOne({email}));
+        if(existingUser && existingUser.password === req.body.password) {
+            return res.json({success: "login successful", email: existingUser.name, password: existingUser.password, name: existingUser.name});
+        } else if (existingUser && existingUser.password !== req.body.password) {
+            return res.json({message: "password is incorrect"});
+        } else {
+            return res.json({message: "email not found"});
+        }
+    } catch(err) {
+        return res.json({err: err});
+    }
+}
+
 module.exports = {
     test,
-    registerUser
+    registerUser,
+    loginUser
 }
