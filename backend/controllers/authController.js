@@ -21,6 +21,7 @@ const registerUser = async(req, res) => { //this has to be an async function bec
         }
 
         const user = await User.create({name, email, password})
+        return res.json({user})
     } catch(err) {
         console.log(err);
     }
