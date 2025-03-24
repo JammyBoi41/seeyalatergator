@@ -1,4 +1,5 @@
 const User = require('../models/user')
+const Listing = require('../models/listings')
 const jwt = require('jsonwebtoken')
 
 const test = (req, res) => {
@@ -65,9 +66,24 @@ const getProfile = (req, res) => {
     }
 }
 
+const getListings = async(req, res) => {
+    try {
+        const listings = await(Listing.find());
+        console.log('getting here')
+        if(listings) {
+            res.json(listings);
+        } else {
+            res.json({message: "no listings"});
+        }
+    } catch(err) {
+        res.json({err});
+    }
+}
+
 module.exports = {
     test,
     registerUser,
     loginUser,
-    getProfile
+    getProfile,
+    getListings
 }

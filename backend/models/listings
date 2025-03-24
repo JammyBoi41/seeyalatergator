@@ -1,0 +1,23 @@
+//model for listings database
+const mongoose = require('mongoose')
+const { Schema } = mongoose
+
+//schema that matches the format of a User instance in User database
+const listingSchema = new Schema({ 
+    title: String,
+    description: String,
+    price: String,
+    userID: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'users'
+    },
+    userEmail: {
+        type: String
+    }
+});
+
+
+//put into 'User' collection
+const ListingModel = mongoose.model('listings', listingSchema); //represents the mongodb user db
+
+module.exports = ListingModel;
