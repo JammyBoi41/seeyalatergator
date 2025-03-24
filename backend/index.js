@@ -2,6 +2,7 @@ const express = require('express')
 const dotenv = require('dotenv').config()
 const cors = require('cors')
 const { mongoose } = require('mongoose')
+const cookieParser = require('cookie-parser')
 
 
 //for connecting to mongodb
@@ -13,7 +14,14 @@ mongoose.connect(process.env.MONGO_URL).then(() => {
 
 
 const app = express();
-app.use(express.json()) //middleware
+
+//middleware
+app.use(express.json()); 
+app.use(cookieParser());
+app.use(express.urlencoded({
+    extended: false
+}))
+
 
 //the express application is going to use routes that are set up in authRoutes
 app.use('/', require('./routes/authRoutes'))

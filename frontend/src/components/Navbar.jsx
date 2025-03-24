@@ -10,10 +10,11 @@ const Navbar = () => {
           <h3 className="font-bold text-gray-600">SYLG</h3>
         </Link>
 
-        <div className="flex items-center justify-center"> {/* buttons in the middle */}
-          <button className="h-3/4 w-full mr-2 text-gray-600 font-bold whitespace-nowrap cursor-pointer hover:text-orange-500 transition duration-300"> Browse </button>
-        </div>
-
+        <Link to='/browse' className="flex flex-row justify-center items-center cursor-pointer"> {/* lofo left */}
+          <div className="flex items-center justify-center"> {/* buttons in the middle */}
+            <button className="h-3/4 w-full mr-2 text-gray-600 font-bold whitespace-nowrap cursor-pointer hover:text-orange-500 transition duration-300"> Browse </button>
+          </div>
+        </Link>
 
         <div className="flex items-center justify-center"> {/* div containing login/signup buttons */}
           <Link to='/signup' className="flex items-center justify-center bg-white min-w-1/2 h-3/4 w-full mr-2 text-gray-600 font-bold whitespace-nowrap pl-1 pr-1 rounded-lg border-1 border-gray-200 cursor-pointer hover:bg-gray-300 transition duration-300"> Sign Up </Link>

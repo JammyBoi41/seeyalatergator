@@ -1,4 +1,5 @@
 const User = require('../models/user')
+const jwt = require('jsonwebtoken')
 
 const test = (req, res) => {
     res.json('test is working');
@@ -32,7 +33,16 @@ const loginUser = async(req, res) => {
         const {email, password} = req.body;
         const existingUser = await(User.findOne({email}));
         if(existingUser && existingUser.password === req.body.password) {
-            return res.json({success: "login successful", email: existingUser.name, password: existingUser.password, name: existingUser.name});
+            jwt.sign({
+                email: existingUser.email,
+                id: existingUser._id, 
+                name: existingUser.name
+            }, process.env.JWT_STRING, {}, (err, token) => {
+                if(err) throw err;
+                res.cookie('token', token).json(existingUser) //set res.cookie as the token, also send back the user data
+            })
+            //double check if this is right
+            // return res.json({success: "login successful", email: existingUser.name, password: existingUser.password, name: existingUser.name});
         } else if (existingUser && existingUser.password !== req.body.password) {
             return res.json({message: "password is incorrect"});
         } else {
@@ -43,8 +53,21 @@ const loginUser = async(req, res) => {
     }
 }
 
+const getProfile = (req, res) => {
+    const {token} = req.cookies;
+    if(token) {
+        jwt.verify(token, process.env.JWT_STRING, {}, (err, user) => {
+            if(err) throw err;
+            res.json(user);
+        });
+    } else {
+        res.json(null);
+    }
+}
+
 module.exports = {
     test,
     registerUser,
-    loginUser
+    loginUser,
+    getProfile
 }
