@@ -29,7 +29,7 @@ const BrowsePage = () => {
 
 
   return (
-    <div style={{backgroundColor: "#f2f4fa"}} className="h-11/12 bottom-0 items-center justify-center w-full flex flex-row pt-10 pb-10">  {/* browsing page div */}
+    <div style={{backgroundColor: "#f2f4fa"}} className="h-11/12 bottom-0 items-center justify-center w-full flex flex-row pt-20 pb-10">  {/* browsing page div */}
       
       
       <div className="bg-white w-1/8 rounded-2xl shadow-md p-5 flex flex-col mr-10"> {/* filtering sidebar */}

@@ -29,10 +29,10 @@ const SellPage = () => {
 
     return (
         <div style={{backgroundColor: "#f2f4fa"}} className="flex min-h-11/12 fixed bottom-0 items-center justify-center w-full flex-col pt-3 pb-3">  {/* selling page div */}
-            <h1 className="text-5xl font-bold mb-5">
+            <h1 className="text-4xl font-bold mb-5">
                 Sell Your Gator Gear
             </h1>
-            <h2 className="text-3xl mb-10">
+            <h2 className="text-xl mb-10">
                 S.Y.L.G is a sustainable, safe and responsible way to buy and sell secondhand UF apparel
             </h2>
 
@@ -42,10 +42,10 @@ const SellPage = () => {
 
 
             <Card className="flex w-3/5 justify-center items-center">
-                <CardTitle className="text-5xl">
+                <CardTitle className="text-4xl">
                     Item Details
                 </CardTitle>
-                <CardDescription className="text-2xl">
+                <CardDescription className="text-xl">
                     Let's get to know your Items!
                 </CardDescription>
 

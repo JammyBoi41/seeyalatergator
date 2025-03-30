@@ -10,7 +10,7 @@ const Navbar = () => {
   const {user} = useContext(UserContext);
 
   return (
-    <div className='text-2xl bg-blue-800 w-screen h-1/12 fixed top-0 left-0 border-gray-200 border-b-1 flex flex-row justify-between '> {/* div of navbar */}
+    <div className='text-xl bg-blue-800 w-screen h-1/12 fixed top-0 left-0 border-gray-200 border-b-1 flex flex-row justify-between '> {/* div of navbar */}
 
         <Link to='/' className="flex flex-row justify-center items-center cursor-pointer"> 
           <h3 className="font-bold text-white hover:text-orange-500 transition duration-300">S.Y.L.G</h3>
@@ -30,7 +30,7 @@ const Navbar = () => {
 
         {user === null ?
         <div className="flex items-center justify-center"> {/* div containing login/signup buttons */}
-          <Link to='/signup' className="flex items-center justify-center bg-white min-w-1/2 h-3/4 w-full mr-2 text-white font-bold whitespace-nowrap pl-1 pr-1 rounded-lg border-1 border-gray-200 cursor-pointer hover:bg-gray-300 transition duration-300"> Sign Up </Link>
+          <Link to='/signup' className="flex items-center justify-center bg-white min-w-1/2 h-3/4 w-full mr-2 text-black font-bold whitespace-nowrap pl-1 pr-1 rounded-lg border-1 border-gray-200 cursor-pointer hover:bg-gray-300 transition duration-300"> Sign Up </Link>
           <Link to="/login" className="flex items-center justify-center bg-orange-500 min-w-1/2 h-3/4 w-full mr-3 text-white font-bold whitespace-nowrap pl-1 pr-1 rounded-lg border-gray-200 cursor-pointer hover:bg-orange-700 transition duration-300"> Log In </Link>
         </div>
 
