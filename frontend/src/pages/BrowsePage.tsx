@@ -29,7 +29,7 @@ const BrowsePage = () => {
 
 
   return (
-    <div style={{backgroundColor: "#f2f4fa"}} className="h-1/12 items-center justify-center w-full flex flex-row pt-3 pb-3">  {/* browsing page div */}
+    <div style={{backgroundColor: "#f2f4fa"}} className="h-11/12 bottom-0 items-center justify-center w-full flex flex-row pt-10 pb-10">  {/* browsing page div */}
       
       
       <div className="bg-white w-1/8 rounded-2xl shadow-md p-5 flex flex-col mr-10"> {/* filtering sidebar */}
@@ -66,13 +66,13 @@ const BrowsePage = () => {
 
 
 
-      <div className='gap-y-5 place-items-center grid w-3/5 h-10/11 grid-cols-3 place-content-center'> {/* container that holds the listings */}
+      <div className='gap-y-5 place-items-center grid w-4/5 h-10/11 grid-cols-4 place-content-center'> {/* container that holds the listings */}
         <input
             type="text"
             placeholder="Search UF apparel..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="p-2 w-4/5 mb-4 shadow-md rounded-lg col-span-3 mt-3 bg-white border-1 border-gray-400"
+            className="p-2 w-4/5 mb-4 shadow-md rounded-lg col-span-4 mt-3 bg-white border-1 border-gray-400"
         />
         
         {filteredData.length > 0 ? (

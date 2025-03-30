@@ -10,7 +10,7 @@ const Navbar = () => {
   const {user} = useContext(UserContext);
 
   return (
-    <div className='text-lg bg-blue-800 w-screen h-1/12 fixed top-0 left-0 border-gray-200 border-b-1 flex flex-row justify-between '> {/* div of navbar */}
+    <div className='text-2xl bg-blue-800 w-screen h-1/12 fixed top-0 left-0 border-gray-200 border-b-1 flex flex-row justify-between '> {/* div of navbar */}
 
         <Link to='/' className="flex flex-row justify-center items-center cursor-pointer"> 
           <h3 className="font-bold text-white hover:text-orange-500 transition duration-300">S.Y.L.G</h3>
