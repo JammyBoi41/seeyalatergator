@@ -1,8 +1,7 @@
 import React from 'react'
-import {UserContext} from '../../context/userContext'
 import { useState, useContext, useEffect } from 'react';
 import getListings from '../lib/getListings';
-import Modal from '../components/Modal';
+import Modal from '../parts/Modal';
 
 // const {user} = useContext(UserContext)
 
