@@ -10,16 +10,21 @@ const Navbar = () => {
   const {user} = useContext(UserContext);
 
   return (
-    <div className='text-lg bg-blue-800 w-screen h-18 fixed top-0 left-0 border-gray-200 border-b-1 flex flex-row justify-between '> {/* div of navbar */}
+    <div className='text-lg bg-blue-800 w-screen h-1/12 fixed top-0 left-0 border-gray-200 border-b-1 flex flex-row justify-between '> {/* div of navbar */}
 
-        {/*<Link to='/' className="flex flex-row justify-center items-center cursor-pointer"> 
-          <img src="shopping_bag.jpg" className="w-full h-full"/>
-          <h3 className="font-bold text-white">SYLG</h3>
-        </Link> */}
+        <Link to='/' className="flex flex-row justify-center items-center cursor-pointer"> 
+          <h3 className="font-bold text-white hover:text-orange-500 transition duration-300">S.Y.L.G</h3>
+        </Link>
 
         <Link to='/browse' className="flex flex-row justify-center items-center cursor-pointer"> {/* lofo left */}
           <div className="flex items-center justify-center"> {/* buttons in the middle */}
             <button className="h-3/4 w-full mr-2 text-white font-bold whitespace-nowrap cursor-pointer hover:text-orange-500 transition duration-300"> Browse </button>
+          </div>
+        </Link>
+
+        <Link to='/sell' className="flex flex-row justify-center items-center cursor-pointer"> {/* lofo left */}
+          <div className="flex items-center justify-center"> {/* buttons in the middle */}
+            <button className="h-3/4 w-full mr-2 text-white font-bold whitespace-nowrap cursor-pointer hover:text-orange-500 transition duration-300"> Sell </button>
           </div>
         </Link>
 

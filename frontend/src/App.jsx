@@ -7,6 +7,7 @@ import SignupPage from './pages/SignupPage'
 import BrowsePage from './pages/BrowsePage'
 import axios from 'axios'
 import { UserContextProvider } from '../context/userContext'
+import SellPage from './pages/SellPage'
 
 axios.defaults.baseURL = 'http://localhost:8000';
 axios.defaults.withCredentials = true;
@@ -21,6 +22,7 @@ function App() {
         <Route path='/login' element={<LoginPage/>}/>
         <Route path='/signup' element={<SignupPage/>}/>
         <Route path='/browse' element={<BrowsePage/>}/>
+        <Route path='/sell' element={<SellPage/>}/>
       </Routes>
       </UserContextProvider>
     </>
