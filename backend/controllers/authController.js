@@ -69,14 +69,30 @@ const getProfile = (req, res) => {
 const getListings = async(req, res) => {
     try {
         const listings = await(Listing.find());
-        console.log('getting here')
-        if(listings) {
-            res.json(listings);
-        } else {
-            res.json({message: "no listings"});
-        }
+        res.json(listings);
     } catch(err) {
-        res.json({err});
+        res.json({err: err});
+    }
+}
+
+const createListing = async(req, res) => {
+    try {
+        const {title, description, price, userID, userEmail} = req.body;
+        if(!title) {
+            res.json("Enter a title");
+        }
+        if(!description) {
+            res.json("Enter a description");
+        }
+        if(!price) {
+            res.json("Please set a price");
+        }
+        //handle user id on the front end (make sure there's a stored cookie for the user)
+        //same for the userEmail
+        const listingResult = await(User.create({title, description, price, userID, userEmail}));
+        
+    } catch(err) {
+        res.json({err: err})
     }
 }
 
@@ -85,5 +101,6 @@ module.exports = {
     registerUser,
     loginUser,
     getProfile,
-    getListings
+    getListings,
+    createListing
 }
