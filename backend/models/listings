@@ -5,6 +5,8 @@ const { Schema } = mongoose
 //schema that matches the format of a User instance in User database
 const listingSchema = new Schema({ 
     title: String,
+    size: String,
+    condition: String,
     description: String,
     price: String,
     userID: {
@@ -13,6 +15,9 @@ const listingSchema = new Schema({
     },
     userEmail: {
         type: String
+    },
+    thumbnail: {
+        type:String
     }
 });
 

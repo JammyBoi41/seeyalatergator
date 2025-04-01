@@ -16,11 +16,12 @@ mongoose.connect(process.env.MONGO_URL).then(() => {
 const app = express();
 
 //middleware
-app.use(express.json()); 
+app.use(express.json({limit: "50mb"})); 
 app.use(cookieParser());
 app.use(express.urlencoded({
     extended: false
-}))
+}));
+
 
 
 //the express application is going to use routes that are set up in authRoutes

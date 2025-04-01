@@ -84,6 +84,7 @@ const BrowsePage = () => {
                 description={listObj.description}
                 price={listObj.price}
                 userEmail={listObj.userEmail}
+                thumbnail={listObj.thumbnail}
               />
             </div>
               );
