@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import Form from 'react-bootstrap/Form';
 import loginUser from '../lib/loginUser';
+import {useNavigate} from 'react-router-dom';
 
 const LoginForm = () => {
+  const navigate = useNavigate();
   const [loginData, setLoginData] = useState({
     email: '',
     password: ''
@@ -10,7 +12,13 @@ const LoginForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    loginUser(loginData);
+    loginUser(loginData).then(res => {
+      if(res && res.email){
+        console.log('this is res: ', res);
+        navigate('/browse');
+        window.location.reload();
+      }
+    })
   };
 
   return (
