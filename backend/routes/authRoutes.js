@@ -3,7 +3,7 @@
 const express = require('express');
 const router = express.Router();
 const cors = require('cors'); //allows you to connect to different hosts
-const { test, registerUser, loginUser, getProfile, getListings, createListing } = require('../controllers/authController')
+const { test, registerUser, loginUser, getProfile, getListings, createListing, logoutUser } = require('../controllers/authController')
 
 //middleware, origin set to http://localhost:5173/...
 router.use(
@@ -19,5 +19,6 @@ router.post('/login', loginUser);
 router.get('/profile', getProfile);
 router.get('/listings', getListings);
 router.post('/createListing', createListing);
+router.post('/logout', logoutUser);
 
 module.exports = router;

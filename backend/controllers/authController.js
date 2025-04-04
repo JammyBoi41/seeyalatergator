@@ -66,6 +66,11 @@ const getProfile = (req, res) => {
     }
 }
 
+const logoutUser = (req, res) => {
+    res.clearCookie('token');
+    res.json({message: "logged out"});
+}
+
 const getListings = async(req, res) => {
     try {
         const listings = await(Listing.find());
@@ -103,5 +108,6 @@ module.exports = {
     loginUser,
     getProfile,
     getListings,
-    createListing
+    createListing,
+    logoutUser
 }
