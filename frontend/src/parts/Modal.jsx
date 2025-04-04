@@ -13,7 +13,8 @@ import {
 import {Label} from '@/components/ui/label';
 import {Input} from '@/components/ui/input';
 import {Button} from '@/components/ui/button';
-
+import {Link} from 'react-router-dom';
+import Chatbox from '../components/ui/chatbox'
 
 const Modal = ({title, description, price, userEmail, thumbnail}) => {
 
@@ -45,8 +46,9 @@ const Modal = ({title, description, price, userEmail, thumbnail}) => {
           </DialogDescription>
         </DialogHeader>
         
-        <DialogFooter>
-          <Button type="submit">Add to Cart</Button>
+        <DialogFooter className="flex justify-center items-center">
+          <Chatbox newUser={userEmail}/>
+          <h1 className="font-bold">Message {userEmail}</h1>
         </DialogFooter>
       </DialogContent>
 

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 interface ModalProps {
     onClose: () => void;
@@ -46,10 +46,22 @@ const initialUsers: User[] = [
     }
 ];
 
-const Modal: React.FC<ModalProps> = ({ onClose }) => {
+const Modal: React.FC<ModalProps> = ({ onClose, newUser }) => {
     const [users, setUsers] = useState<User[]>(initialUsers);
     const [selectedUserIndex, setSelectedUserIndex] = useState(0);
     const [inputText, setInputText] = useState('');
+
+    useEffect(() => {
+        const newMessage: User = {
+            name: newUser, 
+            messages: []
+        }
+        if(newUser !== null) {
+            const temp = [newMessage];
+            setUsers(users => [...users, newMessage]);
+        }
+    }, [newUser])
+    
 
     const selectedUser = users[selectedUserIndex];
 
@@ -89,7 +101,7 @@ const Modal: React.FC<ModalProps> = ({ onClose }) => {
                     <div className="w-1/3 border-r border-gray-300 overflow-y-auto">
                         {users.map((user, index) => (
                             <p
-                                key={user.name}
+                                // key={user.name}
                                 onClick={() => setSelectedUserIndex(index)}
                                 className={`px-4 py-2 border-y border-blue-900 hover:bg-blue-100 hover:cursor-pointer ${selectedUserIndex === index ? 'bg-slate-200 font-bold' : ''
                                     }`}
@@ -104,7 +116,7 @@ const Modal: React.FC<ModalProps> = ({ onClose }) => {
                         <div className="overflow-y-auto flex-grow px-2">
                             {selectedUser.messages.map((msg, idx) => (
                                 <div
-                                    key={idx}
+                                    // key={idx}
                                     className={`flex flex-col ${msg.sender ? 'items-start' : 'items-end'
                                         } mb-3`}
                                 >
@@ -145,7 +157,7 @@ const Modal: React.FC<ModalProps> = ({ onClose }) => {
     );
 };
 
-const Chatbox = () => {
+const Chatbox = ({newUser}) => { //messageUser will be used from the BrowsePage if a user tries to message the owner of a listing
     const [isOpen, setIsOpen] = useState(false);
 
     return (
@@ -153,14 +165,14 @@ const Chatbox = () => {
             <button
                 type="button"
                 onClick={() => setIsOpen(true)}
-                className="btn btn-primary bg-blue-800 hover:cursor-pointer rounded-tl-lg"
+                className="btn btn-primary bg-blue-800 hover:cursor-pointer rounded-2xl"
             >
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="white" className="size-10 hover:stroke-orange-500 transition duration-300">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M8.625 12a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0H8.25m4.125 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0H12m4.125 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0h-.375M21 12c0 4.556-4.03 8.25-9 8.25a9.764 9.764 0 0 1-2.555-.337A5.972 5.972 0 0 1 5.41 20.97a5.969 5.969 0 0 1-.474-.065 4.48 4.48 0 0 0 .978-2.025c.09-.457-.133-.901-.467-1.226C3.93 16.178 3 14.189 3 12c0-4.556 4.03-8.25 9-8.25s9 3.694 9 8.25Z" />
                 </svg>
             </button>
 
-            {isOpen && <Modal onClose={() => setIsOpen(false)} />}
+            {isOpen && <Modal newUser={newUser} onClose={() => setIsOpen(false)} />}
         </>
     );
 };
