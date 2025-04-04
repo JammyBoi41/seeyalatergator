@@ -47,8 +47,11 @@ const SellPage = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(itemData);
         createListing(itemData);
+        setPage(3);
+        setTimeout(() => {
+            navigate('/browse');
+        }, 2000);
     }
 
   
@@ -80,7 +83,11 @@ const SellPage = () => {
                         Let's get to know your Items!
                     </CardDescription></>)
                 }
-                {page === 2 && (<><CardTitle className="text-4xl">
+                {page === 2 && (<>
+                    <Button onClick={() => {setPage(1)}} className="place-self-start ml-5">
+                        Back
+                    </Button>
+                    <CardTitle className="text-4xl">
                         Upload Thumbnail
                     </CardTitle>
                     <CardDescription className="text-xl">
@@ -168,6 +175,14 @@ const SellPage = () => {
                         {!itemData.thumbnail ? <p> </p> : <img className="block rounded-2xl w-2/5" src={itemData.thumbnail}/>}
                     </div>
                 </>)
+                }
+
+                {page === 3 && (<><CardTitle className="flex justify-center items-center text-4xl mb-5">
+                        Item Uploaded!
+                    </CardTitle>
+                    <CardDescription className="text-xl flex justify-center items-center">
+                        You will now be re-directed to the Browse Page...
+                    </CardDescription></>)
                 }
                 </form>
             </Card>
