@@ -15,6 +15,7 @@ const BrowsePage = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [categoryQuery, setCategoryQuery] = useState([]);
   const [sizeQuery, setSizeQuery] = useState([]);
+  const [conditionQuery, setConditionQuery] = useState([]);
 
 
   //constants
@@ -28,7 +29,8 @@ const BrowsePage = () => {
 
   const filteredData = data.filter((listing) =>
     (listing.title.toLowerCase().includes(searchQuery.toLowerCase()) || listing.description.toLowerCase().includes(searchQuery.toLowerCase())) &&
-    (categoryQuery.length === 0 || categoryQuery.includes(listing.category)) && (sizeQuery.length === 0 || sizeQuery.includes(listing.size))
+    (categoryQuery.length === 0 || categoryQuery.includes(listing.category)) && (sizeQuery.length === 0 || sizeQuery.includes(listing.size)) && 
+    (conditionQuery.length === 0 || conditionQuery.includes(listing.condition))
   )
 
 
@@ -63,12 +65,22 @@ const BrowsePage = () => {
 
         <h1 className="text-xl font-bold mt-5"> Conditions </h1>
         {conditions.map((cond) => {
-          return (
-            <div>
-              <Checkbox key={cond} className="mr-2"></Checkbox>
+          return(
+            <div key={cond}>
+              <Checkbox 
+                checked={conditionQuery.includes(cond)} 
+                onCheckedChange={(e) => {
+                  if(e) {
+                    setConditionQuery(prev => [...prev, cond]);
+                  } else {
+                    setConditionQuery(prev => prev.filter(item => item !== cond));
+                  }
+                }}
+                className="mr-2"
+              />
               {cond}
             </div>
-          )
+          );
         })}
 
         <h1 className="text-xl font-bold mt-5"> Sizes </h1>
