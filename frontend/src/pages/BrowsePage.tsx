@@ -123,6 +123,9 @@ const BrowsePage = () => {
                 title={listObj.title}
                 description={listObj.description}
                 price={listObj.price}
+                category={listObj.category}
+                condition={listObj.condition}
+                size={listObj.size}
                 userEmail={listObj.userEmail}
                 thumbnail={listObj.thumbnail}
               />

@@ -15,8 +15,9 @@ import {Input} from '@/components/ui/input';
 import {Button} from '@/components/ui/button';
 import {Link} from 'react-router-dom';
 import Chatbox from '../components/ui/chatbox'
+import {Badge} from '@/components/ui/badge'
 
-const Modal = ({title, description, price, userEmail, thumbnail}) => {
+const Modal = ({title, description, price, userEmail, category, condition, size, thumbnail}) => {
 
   return (
     <Dialog>
@@ -29,6 +30,12 @@ const Modal = ({title, description, price, userEmail, thumbnail}) => {
                 <div className="flex flex-row justify-between">
                     <h1 className="font-bold text-gray-600">{title}</h1>
                     <h2 className="font-bold text-orange-600">{price}</h2>
+                </div>
+
+                <div className="flex flex-row mb-2">
+                  <Badge className='bg-blue-600'> {category} </Badge>
+                  <Badge className='bg-blue-600'> {condition} </Badge>
+                  <Badge className='bg-blue-600'> {size} </Badge>
                 </div>
             
                 <h1 className="text-gray-600 text-sm"> {userEmail} </h1>
