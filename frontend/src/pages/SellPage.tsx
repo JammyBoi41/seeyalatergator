@@ -86,7 +86,7 @@ const SellPage = () => {
                     </CardDescription></>)
                 }
                 {page === 2 && (<>
-                    <Button onClick={() => {setPage(1)}} className="place-self-start ml-5">
+                    <Button onClick={() => {setPage(1); }} className="place-self-start ml-5">
                         Back
                     </Button>
                     <CardTitle className="text-4xl">
@@ -106,26 +106,26 @@ const SellPage = () => {
                             <h1 className="text-xl ">Enter a title
                                 <span className="text-red-400">*</span>
                             </h1>
-                            <Input placeholder="Title of item" onChange={(e) => setItemData({...itemData, title: e.target.value})}/>
+                            <Input value={itemData.title} placeholder="Title of item" onChange={(e) => setItemData({...itemData, title: e.target.value})}/>
                         </div>
                             
                         <div className="w-full mr-2">
                             <h1 className="text-xl ">Choose a size
                                 <span className="text-red-400">*</span>
                             </h1>
-                            <Select onValueChange={(value) => setItemData({...itemData, size: value})}>
+                            <Select 
+                                value={itemData.size}
+                                onValueChange={(value) => setItemData({...itemData, size: value})}>
                                 <SelectTrigger className="w-full">
                                     <SelectValue placeholder="Select a size"/>
                                 </SelectTrigger>
                                 <SelectContent>
                                     <SelectGroup>
-                                        {sizes.map((size) => {
-                                            return(
-                                                <SelectItem value={size}>
-                                                    {size}
-                                                </SelectItem>
-                                            )
-                                        })}
+                                    {sizes.map((size) => (
+                                        <SelectItem key={size} value={size}>
+                                        {size}
+                                        </SelectItem>
+                                    ))}
                                     </SelectGroup>
                                 </SelectContent>
                             </Select>
@@ -135,19 +135,19 @@ const SellPage = () => {
                             <h1 className="text-xl ">Select a Condition
                                 <span className="text-red-400">*</span>
                             </h1>
-                            <Select onValueChange={(value) => setItemData({...itemData, condition: value})}>
+                            <Select 
+                                value={itemData.condition}
+                                onValueChange={(value) => setItemData({...itemData, condition: value})}>
                                 <SelectTrigger className="w-full">
                                     <SelectValue placeholder="How worn is the item?"/>
                                 </SelectTrigger>
                                 <SelectContent>
                                     <SelectGroup>
-                                        {conditions.map((size) => {
-                                            return(
-                                                <SelectItem value={size}>
-                                                    {size}
-                                                </SelectItem>
-                                            )
-                                        })}
+                                    {conditions.map((condition) => (
+                                        <SelectItem key={condition} value={condition}>
+                                        {condition}
+                                        </SelectItem>
+                                    ))}
                                     </SelectGroup>
                                 </SelectContent>
                             </Select>
@@ -159,25 +159,25 @@ const SellPage = () => {
                             <h1 className="text-xl ">Price
                                 <span className="text-red-400">*</span>
                             </h1>
-                            <Input type="number" placeholder="Price of item" onChange={(e) => setItemData({...itemData, price: e.target.value})}/>
+                            <Input value={itemData.price} type="number" placeholder="Price of item" onChange={(e) => setItemData({...itemData, price: e.target.value})}/>
                         </div>
                         <div className="w-1/2">
                             <h1 className="text-xl ">Select Category of item
                                     <span className="text-red-400">*</span>
                             </h1>
-                            <Select onValueChange={(value) => setItemData({...itemData, category: value})}>
+                            <Select 
+                                value={itemData.category} 
+                                onValueChange={(value) => setItemData({...itemData, category: value})}>
                                 <SelectTrigger className="w-full">
-                                    <SelectValue placeholder="How worn is the item?"/>
+                                    <SelectValue placeholder="Select a category"/>
                                 </SelectTrigger>
                                 <SelectContent>
                                     <SelectGroup>
-                                        {categories.map((size) => {
-                                            return(
-                                                <SelectItem value={size}>
-                                                    {size}
-                                                </SelectItem>
-                                            )
-                                        })}
+                                    {categories.map((category) => (
+                                        <SelectItem key={category} value={category}>
+                                        {category}
+                                        </SelectItem>
+                                    ))}
                                     </SelectGroup>
                                 </SelectContent>
                             </Select>
@@ -192,7 +192,7 @@ const SellPage = () => {
                         <h1 className="text-xl"> Description 
                             <span className="text-red-400">*</span>
                         </h1>
-                        <Input onChange={(e) => setItemData({...itemData, description: e.target.value})} className="h-24" placeholder="Description of your item..."/>
+                        <Input value={itemData.description} onChange={(e) => setItemData({...itemData, description: e.target.value})} className="h-24" placeholder="Description of your item..."/>
                     </div>
             
                     <Button disabled={!itemData.title || !itemData.size || !itemData.condition || !itemData.description || !itemData.price || !itemData.category} onClick={()=>{setPage(2)}} className="cursor-pointer mt-5"> {/* page 1 -> page 2 */}

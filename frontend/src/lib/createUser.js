@@ -6,6 +6,7 @@ const createUser = async ({name, email, password}) => {
         if(data.error) {
             alert(data.error);
         }
+        return data;
     } catch(e) {
         console.log("frontend/createUser.js error: ", e)
     }
