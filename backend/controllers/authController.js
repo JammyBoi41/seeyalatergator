@@ -45,9 +45,9 @@ const loginUser = async(req, res) => {
             //double check if this is right
             // return res.json({success: "login successful", email: existingUser.name, password: existingUser.password, name: existingUser.name});
         } else if (existingUser && existingUser.password !== req.body.password) {
-            return res.json({message: "password is incorrect"});
+            return res.json({error: "The email and password combination was not found!"});
         } else {
-            return res.json({message: "email not found"});
+            return res.json({error: "The email and password combination was not found!"});
         }
     } catch(err) {
         return res.json({err: err});
