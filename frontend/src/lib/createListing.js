@@ -1,10 +1,9 @@
 import axios from 'axios';
 
-const createListing = async ({title, description, price, userID, userEmail, thumbnail}) => {
+const createListing = async ({title, description, price, userID, userEmail, thumbnail, condition, category}) => {
     try {
         console.log('getting here!');
-        const price = "25.99"; //CHANGE THIS I JUST WANT TO DO THIS FOR TESTING REASONS
-        const {data} = await axios.post('/createListing', {title, description, price, userID, userEmail, thumbnail})
+        const {data} = await axios.post('/createListing', {title, description, price, userID, userEmail, condition, category, thumbnail})
         if(data.err) {
             console.log(data.err)
         }
