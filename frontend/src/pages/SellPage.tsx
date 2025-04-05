@@ -23,7 +23,9 @@ const SellPage = () => {
     const [itemData, setItemData] = useState({
         title: "",
         size: "",
+        price: "",
         condition: "",
+        category: "",
         description: "",
         thumbnail: "",
         userID: "",
@@ -96,7 +98,9 @@ const SellPage = () => {
                 }
 
                 <form className="w-3/4 flex flex-col mt-10" onSubmit={(e) => handleSubmit(e)}> {/* be sure to include onSubmit later */}
-                    {page === 1 && (<><div className="flex flex-row w-full mb-4">
+                    {page === 1 && (<>
+                    
+                    <div className="flex flex-row w-full mb-4">
 
                         <div className="w-full mr-2">
                             <h1 className="text-xl ">Enter a title
@@ -150,17 +154,50 @@ const SellPage = () => {
                         </div>
                     </div>
 
-
-                        <div className="w-full mt-4">
-                            <h1 className="text-xl"> Description 
+                    <div className="flex flex-row mb-4">
+                        <div className="w-1/2">
+                            <h1 className="text-xl ">Price
                                 <span className="text-red-400">*</span>
                             </h1>
-                            <Input onChange={(e) => setItemData({...itemData, description: e.target.value})} className="h-24" placeholder="Description of your item..."/>
+                            <Input type="number" placeholder="Price of item" onChange={(e) => setItemData({...itemData, price: e.target.value})}/>
                         </div>
-                
-                        <Button disabled={!itemData.title || !itemData.size || !itemData.condition || !itemData.description} onClick={()=>{setPage(2)}} className="cursor-pointer mt-5"> {/* page 1 -> page 2 */}
-                            Continue
-                        </Button>
+                        <div className="w-1/2">
+                            <h1 className="text-xl ">Select Category of item
+                                    <span className="text-red-400">*</span>
+                            </h1>
+                            <Select onValueChange={(value) => setItemData({...itemData, category: value})}>
+                                <SelectTrigger className="w-full">
+                                    <SelectValue placeholder="How worn is the item?"/>
+                                </SelectTrigger>
+                                <SelectContent>
+                                    <SelectGroup>
+                                        {categories.map((size) => {
+                                            return(
+                                                <SelectItem value={size}>
+                                                    {size}
+                                                </SelectItem>
+                                            )
+                                        })}
+                                    </SelectGroup>
+                                </SelectContent>
+                            </Select>
+                        </div>
+
+                    </div>
+
+                    
+
+
+                    <div className="w-full mt-4">
+                        <h1 className="text-xl"> Description 
+                            <span className="text-red-400">*</span>
+                        </h1>
+                        <Input onChange={(e) => setItemData({...itemData, description: e.target.value})} className="h-24" placeholder="Description of your item..."/>
+                    </div>
+            
+                    <Button disabled={!itemData.title || !itemData.size || !itemData.condition || !itemData.description || !itemData.price || !itemData.category} onClick={()=>{setPage(2)}} className="cursor-pointer mt-5"> {/* page 1 -> page 2 */}
+                        Continue
+                    </Button>
                     </>
                 )}
 

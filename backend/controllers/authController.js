@@ -82,21 +82,11 @@ const getListings = async(req, res) => {
 
 const createListing = async(req, res) => {
     try {
-        const {title, description, price, userID, userEmail, thumbnail} = req.body;
-        if(!title) {
-            res.json({err: "Enter a title"});
-        }
-        if(!description) {
-            res.json({err: "Enter a description"});
-        }
-        if(!price) {
-            res.json({err: "Please set a price"});
-        }
+        const {title, description, price, userID, userEmail, thumbnail, condition, category} = req.body;
         //handle user id on the front end (make sure there's a stored cookie for the user)
         //same for the userEmail
         //might wanna add error handling for no thumbnail, but im p much implementing error handling for the other features on the front-end so hopefully we can avoid this for time's sake
-        const listingResult = await(Listing.create({title, description, price, userID, userEmail, thumbnail}));
-        
+        const listingResult = await(Listing.create({title, description, price, condition, category, userID, userEmail, thumbnail}));
     } catch(err) {
         res.json({err: err})
     }

@@ -9,6 +9,8 @@ const listingSchema = new Schema({
     condition: String,
     description: String,
     price: String,
+    condition: String,
+    category: String,
     userID: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'users'
