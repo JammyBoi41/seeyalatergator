@@ -13,6 +13,9 @@ const BrowsePage = () => {
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
+  const [categoryQuery, setCategoryQuery] = useState([]);
+  const [sizeQuery, setSizeQuery] = useState([]);
+
 
   //constants
   const categories = ["T-Shirts", "Hoodies", "Gameday", "Pants", "Accessories", "Furniture", "Cosmetics", "Hats"];
@@ -24,8 +27,11 @@ const BrowsePage = () => {
   }, [])
 
   const filteredData = data.filter((listing) =>
-    listing.title.toLowerCase().includes(searchQuery.toLowerCase()) || listing.description.toLowerCase().includes(searchQuery.toLowerCase())
+    (listing.title.toLowerCase().includes(searchQuery.toLowerCase()) || listing.description.toLowerCase().includes(searchQuery.toLowerCase())) &&
+    (categoryQuery.length === 0 || categoryQuery.includes(listing.category)) && (sizeQuery.length === 0 || sizeQuery.includes(listing.size))
   )
+
+
 
 
 
@@ -38,11 +44,21 @@ const BrowsePage = () => {
         <h1 className="text-xl font-bold">Categories</h1>
         {categories.map((cat) => {
           return(
-            <div>
-              <Checkbox key={cat} className="mr-2"></Checkbox>
+            <div key={cat}>
+              <Checkbox 
+                checked={categoryQuery.includes(cat)} 
+                onCheckedChange={(e) => {
+                  if(e) {
+                    setCategoryQuery(prev => [...prev, cat]);
+                  } else {
+                    setCategoryQuery(prev => prev.filter(item => item !== cat));
+                  }
+                }}
+                className="mr-2"
+              />
               {cat}
             </div>
-          )
+          );
         })}
 
         <h1 className="text-xl font-bold mt-5"> Conditions </h1>
@@ -57,12 +73,22 @@ const BrowsePage = () => {
 
         <h1 className="text-xl font-bold mt-5"> Sizes </h1>
         {sizes.map((size) => {
-          return (
-            <div>
-              <Checkbox key={size} className="mr-2"></Checkbox>
+          return(
+            <div key={size}>
+              <Checkbox 
+                checked={sizeQuery.includes(size)} 
+                onCheckedChange={(e) => {
+                  if(e) {
+                    setSizeQuery(prev => [...prev, size]);
+                  } else {
+                    setSizeQuery(prev => prev.filter(item => item !== size));
+                  }
+                }}
+                className="mr-2"
+              />
               {size}
             </div>
-          )
+          );
         })}
       </div>
 
